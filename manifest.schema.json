@@ -1,0 +1,203 @@
+{
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "description": "The json schema of this file"
+    },
+    "id": {
+      "type": "string",
+      "title": "An UUID to identify this module.",
+      "description": "This UUID should be unique for every modules",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of this module"
+    },
+    "description": {
+      "type": "string",
+      "description": "The description fo this module"
+    },
+    "version": {
+      "type": "string",
+      "examples": [
+        "0.0.1"
+      ]
+    },
+    "embed": {
+      "type": "string",
+      "description": "entry of embed"
+    },
+    "externalWindow": {
+      "type": "string",
+      "description": "entry of externalWindow"
+    },
+    "web": {
+      "type": "string",
+      "description": "entry of web"
+    },
+    "permissions": {
+      "title": "Permissions",
+      "description": "The permission requied by this module",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "icon": {
+      "title": "Icon",
+      "description": "Icon of this module. If fail to load, it will be fall back to auto generate.",
+      "type": "string",
+      "format": "uri"
+    },
+    "iconColor": {
+      "title": "color of icon",
+      "description": "The color of auto generate module icon.",
+      "type": "string",
+      "format": "rgbcolor",
+      "pattern": "^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"
+    },
+    "externalWindowOption": {
+      "type": "object",
+      "description": "Almost like Electron.BrowserWindowConstructorOptions . And we delete some of them.",
+      "properties": {
+        "width": {
+          "type": "number",
+          "description": "Window's width in pixels. Default is `800`."
+        },
+        "height": {
+          "type": "number",
+          "description": "Window's height in pixels. Default is `600`."
+        },
+        "x": {
+          "type": "number",
+          "description": "(**required** if y is used) Window's left offset from screen. Default is to center the window."
+        },
+        "y": {
+          "type": "number",
+          "description": "(**required** if x is used) Window's top offset from screen. Default is to center the window."
+        },
+        "resizable": {
+          "type": "boolean",
+          "description": "Whether window is resizable. Default is `true`."
+        },
+        "movable": {
+          "type": "boolean",
+          "description": "Whether window is movable. This is not implemented on Linux. Default is `true`."
+        },
+        "minimizable": {
+          "type": "boolean",
+          "description": "Whether window is minimizable. This is not implemented on Linux. Default is `true`."
+        },
+        "maximizable": {
+          "type": "boolean",
+          "description": "Whether window is maximizable. This is not implemented on Linux. Default is `true`."
+        },
+        "focusable": {
+          "type": "boolean",
+          "description": "Whether the window can be focused. Default is `true`. On Windows setting `focusable: false` also implies setting `skipTaskbar: true`. On Linux setting `focusable: false` makes the window stop interacting with wm, so the window will always stay on top in all workspaces."
+        },
+        "alwaysOnTop": {
+          "type": "boolean",
+          "description": "Whether the window should always stay on top of other windows. Default is `false`."
+        },
+        "fullscreenable": {
+          "type": "boolean",
+          "description": "Whether the window can be put into fullscreen mode. On macOS, also whether the maximize/zoom button should toggle full screen mode or maximize window. Default   * is `true`."
+        },
+        "skipTaskbar": {
+          "type": "boolean",
+          "description": "Whether to show the window in taskbar. Default is `false`."
+        },
+        "frame": {
+          "type": "boolean",
+          "description": "Specify `false` to create a Frameless Window. Default is `true`."
+        },
+        "modal": {
+          "type": "boolean",
+          "description": "Whether this is a modal window. This only works when the window is a child window. Default is `false`."
+        },
+        "acceptFirstMouse": {
+          "type": "boolean",
+          "description": "Whether the web view accepts a single mouse-down event that simultaneously activates the window. Default is `false`."
+        },
+        "disableAutoHideCursor": {
+          "type": "boolean",
+          "description": "Whether to hide cursor when typing. Default is `false`."
+        },
+        "autoHideMenuBar": {
+          "type": "boolean",
+          "description": "Auto hide the menu bar unless the `Alt` key is pressed. Default is `false`."
+        },
+        "enableLargerThanScreen": {
+          "type": "boolean",
+          "description": "Enable the window to be resized larger than screen. Only relevant for macOS, as other OSes allow larger-than-screen windows by default. Default is `false`."
+        },
+        "backgroundColor": {
+          "type": "string",
+          "description": "Window's background color as a hexadecimal value, like `#66CD00` or `#FFF` or `#80FFFFFF` (alpha in #AARRGGBB format is supported if `transparent` is set to   * `true`). Default is `#FFF` (white)."
+        },
+        "hasShadow": {
+          "type": "boolean",
+          "description": "Whether window should have a shadow. Default is `true`."
+        },
+        "opacity": {
+          "type": "number",
+          "description": "Set the initial opacity of the window, between 0.0 (fully transparent) and 1.0 (fully opaque). This is only implemented on Windows and macOS."
+        },
+        "darkTheme": {
+          "type": "boolean",
+          "description": "Forces using dark theme for the window, only works on some GTK+3 desktop environments. Default is `false`."
+        },
+        "transparent": {
+          "type": "boolean",
+          "description": "Makes the window transparent. Default is `false`. On Windows, does not work unless the window is frameless."
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of window, default is normal window. See more about this below."
+        },
+        "thickFrame": {
+          "type": "boolean",
+          "description": "Use `WS_THICKFRAME` style for frameless windows on Windows, which adds standard window frame. Setting it to `false` will remove window shadow and window   * animations. Default is `true`."
+        },
+        "vibrancy": {
+          "type": "string",
+          "enum": [
+            "appearance-based",
+            "light",
+            "dark",
+            "titlebar",
+            "selection",
+            "menu",
+            "popover",
+            "sidebar",
+            "medium-light",
+            "ultra-dark",
+            "header",
+            "sheet",
+            "window",
+            "hud",
+            "fullscreen-ui",
+            "tooltip",
+            "content",
+            "under-window",
+            "under-page"
+          ],
+          "description": "Add a type of vibrancy effect to the window, only on macOS. Can be `appearance-based`, `light`, `dark`, `titlebar`, `selection`, `menu`, `popover`,   * `sidebar`, `medium-light`, `ultra-dark`, `header`, `sheet`, `window`, `hud`, `fullscreen-ui`, `tooltip`, `content`, `under-window`, or `under-page`.  Please   * note that using `frame: false` in combination with a vibrancy value requires that you use a non-default `titleBarStyle` as well. Also note that   * `appearance-based`, `light`, `dark`, `medium-light`, and `ultra-dark` have been deprecated and will be removed in an upcoming version of macOS."
+        }
+      }
+    },
+    "defaultConfig": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "description",
+    "version",
+    "permissions"
+  ]
+}
